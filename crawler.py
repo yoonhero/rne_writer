@@ -54,6 +54,23 @@ class Crawler():
 
             time.sleep(120)
 
+    def delete(self):
+        try:
+            self.browser.get("https://welcomerne.com/post.jsp?pageNumber=1&bbsType=998&searchWord=null")
+
+            self.browser.find_element(By.XPATH, "/html/body/div/div/div/div[1]/table/tbody/tr[1]/td[2]/a").click()
+
+            self.browser.find_element(By.XPATH,"/html/body/div[2]/div/div[2]/div/a[2]").click()
+
+            time.sleep(0.1)
+
+            alert = self.browser.switch_to.alert
+            alert.accept()
+
+            time.sleep(1)
+        except:
+            time.sleep(14)
+
     def quit(self):
         self.browser.quit()
 
@@ -63,3 +80,6 @@ class Crawler():
 
 if __name__ == "__main__":
     crawl = Crawler()
+
+    while True:
+        crawl.delete()
