@@ -16,5 +16,5 @@ while True:
 
     crawler.write(author,generated)
 
-    time.sleep(3)
+    time.sleep(20)
 

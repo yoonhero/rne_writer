@@ -8,9 +8,18 @@ from selenium.common.exceptions import TimeoutException
 class Crawler():
     def __init__(self):
         self.browser = webdriver.Chrome("./chromedriver.exe")
-        self.num = 300
 
         self.login()
+        
+        self.browser.get("https://welcomerne.com/bbs.jsp?bbsType=1")
+
+        i = 0
+        while True:
+            i += 1
+            text = self.browser.find_element(By.XPATH, f"/html/body/div[4]/div/table/tbody/tr[{i}]/td[2]/a").text
+            if text[0:6] == "오늘의 명언":
+                self.num = int(text[-3:])
+                break
 
     def login(self): 
         self.browser.get('https://welcomerne.com/login.jsp')
@@ -38,12 +47,19 @@ class Crawler():
 
             self.browser.find_element(By.XPATH,"/html/body/div/div/form/input").click()
 
-        except :
+        except:
             print("Error Occured")
             alert = self.browser.switch_to.alert
             alert.accept()
 
-            time.sleep(60)
+            time.sleep(120)
 
     def quit(self):
         self.browser.quit()
+
+
+
+
+
+if __name__ == "__main__":
+    crawl = Crawler()
