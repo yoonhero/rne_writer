@@ -34,6 +34,8 @@ class Crawler():
             time.sleep(4)
 
             self.browser.find_element(By.XPATH,"/html/body/div/div/form/input").click()
+
+            
         except:
             alert = self.driver.switch_to_alert()
             alert.accept()
